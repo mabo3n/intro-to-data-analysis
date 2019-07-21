@@ -1,0 +1,169 @@
+enrollments
+  account_key
+  status
+  join_date
+  cancel_date
+  days_to_cancel
+  is_udacity
+  is_canceled
+
+daily_engagement
+  acct
+  utc_date
+  total_minutes_visited
+  lessons_completed
+  projects_completed
+
+project_submissions
+  creation_date
+  completion_date
+  assigned_rating
+  account_key
+  lesson_key
+  processing_state
+
+
+
+matriculas
+enrollments.csv:
+
+Data about a random subset of Data Analyst Nanodegree students who complete
+their first project and a random subset of students who do not.
+
+Columns:
+codConta
+   - account_key:    A unique identifier for the account of the student who
+                     enrolled.
+
+status
+    - status:         The enrollment status of the student at the time the data
+                      was collected. Possible values are 'canceled' and
+                      'current'.
+dataMatricula
+    - join_date:      The date the student enrolled.
+
+dataCancelamento
+    - cancel_date:    The date the student canceled, or blank if the student has
+                      not yet canceled.
+
+diasParaCancelamento
+    - days_to_cancel
+        is_udacity: The number of days between join_date and cancel_date, or
+                      blank if the student has not yet canceled.
+                      is_canceled
+
+contaTeste
+    - is_udacity:     True if the account is a Udacity test account, False
+                      otherwise.
+
+cancelou
+    - is_canceled:    True if the student had canceled this enrollment at the
+                      time the data was collected, False otherwise.
+
+-------------------------------------------------------------------------------
+
+daily_engagement.csv:
+engajamentoDiario
+
+Data about engagement within Data Analyst Nanodegree courses for each student in
+the enrollment table on each day they were enrolled. Includes a record even if
+there was no engagement that day. Includes engagement data from both the
+supporting courses for the Nanodegree program, and the corresponding freely
+available courses with the same content.
+
+Columns:
+
+codConta
+    - acct:                  A unique identifier for the account of the student
+                             whose engagement data this is.
+
+dia
+    - utc_date:              The date for which the data was collected.
+
+
+tempoEstudandoNoDia
+    - total_minutes_visited: The total number of minutes the student spent
+                             taking Data Analyst Nanodegree courses on this day.
+
+tarefasTerminadasNoDia
+    - lessons_completed:     The total number of lessons within Data Analyst
+                             Nanodegree courses on this day.
+
+projetosCompletadosNoDia
+    - projects_completed:    The total number of Data Analyst Nanodegree
+                             projects the student completed on this day.
+
+-------------------------------------------------------------------------------
+
+daily_engagement_full.csv:
+engajamentoDiarioFull
+
+Similar to daily_engagement.csv, but with engagement further broken down by
+course and with more columns available. This file is about 500 megabytes, which
+is why the smaller daily_engagement.csv file was created. This dataset is
+optional; it is not needed to complete the course.
+
+In addition to the following columns, this table also contains all the same
+columns as daily_engagement.csv, except with has_visited instead of
+num_courses_visited.
+
+Columns:
+
+
+dataRegistroDaConta
+    - registration_date:  Date the account was registered.
+
+dataInicioInscricao
+    - subscription_start: Date paid subscription for the account started.
+
+codCurso
+    - course_key:         Course in which activity is recorded.
+
+codCursoGratis
+    - sibling_key:        Free course with the same free content as course_key.
+                          If course_key is a free course, course_key and
+                          sibling_key are the same.
+
+nomeCurso
+    - course_title:       Title of the course.
+
+visitouCursoNoDia
+    - has_visited:        1 if the student visited this course for at least 2
+                          minutes on this day.
+
+-------------------------------------------------------------------------------
+
+project_submissions.csv:
+submissoesProjetos
+
+Data about submissions for Data Analyst Nanodegree projects for each student in
+the enrollment table.
+
+Columns:
+
+dataCriacao
+    - creation_date:    The date the project was submitted.
+
+dataFinal
+    - completion_date:  The date the project was evaluated.
+
+avaliacao
+    - assigned_rating:  This column has 4 possible values:
+                        blank - Project has not yet been evaluated.
+                        INCOMPLETE - Project did not meet specifications.
+                        PASSED - Project met specifications.
+                        DISTINCTION - Project exceeded specifications.
+                        UNGRADED - The submission could not be evaluated
+                                   (e.g. contained a corrupted file)
+
+codConta
+    - account_key:      A unique identifier for the account of the student who
+                        submitted the project.
+
+codProjeto
+    - lesson_key:       A unique identifier for the project that was submitted.
+
+statusAvaliacao
+    - processing_state: This column has 2 possible values:
+                        CREATED - Project has been submitted but not evaluated.
+                        EVALUATED - Project has been evaluated.
